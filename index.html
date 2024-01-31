@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/css/bootstrap.min.css" integrity="sha512-FDmq6CvX9bISF46kh42q3q8egvsgIKOlFUnfCZHwziWdJ8nkJHcX9quznU5kg6UbbZ5z5Q6+e/zIz+dJdeWpFA==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="public/styles.css">
+    <title>Calculator</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="my-4">Calculator</h1>
+        <form method="post" action="/" class="mb-4">
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <input type="text" name="n1" class="form-control" placeholder="First Number">
+                </div>
+                <div class="col-md-3 mb-3">
+                    <input type="text" name="n2" class="form-control" placeholder="Second Number">
+                </div>
+                <div class="col-md-3 mb-3">
+                    <select name="operation" class="form-select">
+                        <option value="add">+</option>
+                        <option value="subtract">-</option>
+                        <option value="multiply">*</option>
+                        <option value="divide">/</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <button type="submit" name="submit" class="btn btn-primary">Calculate</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Result will be displayed here -->
+        <div id="result"></div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.min.js" integrity="sha512-4IdFRL4MF/Q4aG+uV9Q2LlTHu6FKzUfnKw1Nch2JwxzzN+Vf0I/8FrWJkN/6OtvT0rDRB8elwW0wnv1Fp0Hd3A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/calculator.js"></script>
+</body>
+
+</html>
+<script>
+    $(document).ready(function() {
+        $('form').submit(function(event) {
+            event.preventDefault();
+            $.post('/', $(this).serialize(), function(data) {
+                $('#result').html(data);
+            });
+        });
+    });
+</script>
+</body>
+
+</html>
